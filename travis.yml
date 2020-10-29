@@ -1,0 +1,15 @@
+language: node_js
+
+node_js:
+  - 4.2
+
+services:
+  - docker
+
+script:
+  - docker-compose up --build -d
+
+after_success:
+  - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+  - docker tag auth-node $DOCKER_USER/auth-node:latest
+  - docker push $DOCKER_USER/auth-node:latest

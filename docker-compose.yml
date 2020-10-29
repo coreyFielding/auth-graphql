@@ -1,0 +1,13 @@
+version: "2.1"
+
+services:
+  node_server:
+    container_name: auth_node
+    image: auth-node:latest
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile
+    ports:
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+    volumes:
+      - ./:/usr/src/app
